@@ -22,13 +22,13 @@ export class News extends Component {
        loading : false,
        totalResults: 0
      }
-     
+    
   }
 
 // Util funcn
 async updateNews(pageNo){
   this.props.setProgress(10);
-  const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=b4b3e532a0464c6497562273b071dee6&page=${pageNo}&pageSize=15`;
+  const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=15`;
   let data = await fetch(url);
   this.props.setProgress(50);
   let parsedData = await data.json();
@@ -54,7 +54,7 @@ async componentDidMount(){
 
 fetchMoreData = async() => {
   this.setState({page : this.state.page + 1});
-  const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=b4b3e532a0464c6497562273b071dee6&page=${this.state.page}&pageSize=15`;
+  const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=15`;
   let data = await fetch(url);
   let parsedData = await data.json();
   this.setState(
